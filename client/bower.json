@@ -1,0 +1,22 @@
+{
+  "name": "client",
+  "homepage": "https://github.com/nirajvora/csvQuerier",
+  "authors": [
+    "Niraj Vora <nsvora@ucdavis.edu>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "d3": "~3.5.11"
+  }
+}
