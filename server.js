@@ -62,6 +62,42 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/client/index.html');
 });
 
+app.post('/query', function (req, res) {
+
+  var product = (req.body.product === undefined || req.body.product === "") ? null : req.body.product.trim().toUpperCase();
+  var employeeSize = (req.body.employeeSize === undefined || req.body.product === "") ? null : req.body.employeeSize.replace(/ /g, '');
+  var score = (req.body.score === undefined || req.body.score === "") ? null : req.body.score.replace(/ /g, '');
+
+  var esRange, scoreRange;
+  if(employeeSize !== null) { esRange = employeeSize.search('-'); };
+  if(score !== null) { scoreRange = score.search('-'); };
+
+  var query = 'Company.find({})';
+
+  if(product !== null) {
+    if(product === 'PRODUCT') { product += " "; };
+    query += '.where("Product").equals("'+product+'")';
+  }
+
+  if(employeeSize !== null && esRange === -1) {
+    query += '.where("EmployeeCount").equals('+employeeSize+')'
+  } else if(employeeSize !== null) {
+    query += '.where("EmployeeCount").gt('+ (Number(employeeSize.slice(0,esRange)) - 1) + ').lt('+ (Number(employeeSize.slice(esRange + 1)) + 1) + ')';
+  }
+
+  if(score !== null && scoreRange === -1) {
+    query += '.where("Scored").equals('+score+')'
+  } else if(score !== null) {
+    query += '.where("Scored").gt('+ (Number(score.slice(0,scoreRange)) - 1) + ').lt('+ (Number(score.slice(scoreRange + 1)) + 1) + ')';
+  }
+
+  query += '.exec(function ( error, companies ) { if(error) { console.log(error); } else { res.send(companies); }});';
+  console.log(query)
+
+  eval(query);
+
+});
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////// RUN SERVER
 
 process.on('uncaughtException', function (err) {

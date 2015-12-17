@@ -3,6 +3,7 @@
 
 <head>
   <title>csvQuery</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/d3/d3.min.js"></script>
 </head>
@@ -10,10 +11,14 @@
 <body ng-app='app'>
 <div ng-controller='PageController'>
 
+<form>
+<span><h5>Search Companies By:</h5></span>
+<span> Product <input ng-model='product' type="input" placeholder="e.g. Product A"> </span>
+<span> Employee Size <input ng-model='employeeSize' type="input" placeholder="e.g. 200-1000 or just 200"> </span>
+<span> Score <input ng-model='score' type="input" placeholder="e.g. 20-35 or just 20"> </span>
 
-
-
-
+<button ng-click='sendQuery(product, employeeSize, score);'>Search</button>
+</form>
 
 
 
