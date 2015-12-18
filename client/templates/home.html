@@ -1,0 +1,19 @@
+
+showing {{data.length}} companies
+
+<table style="width:100%">
+  <tr>
+    <td ng-click="order(key)">Company</td>
+    <td ng-click="order('EmployeeCount')">Employee Count</td> 
+    <td ng-click="order('Product')">Product</td>
+    <td ng-click="order('Scored')">Score</td>
+    <td ng-click="order('OpportunityCreated')">Opportunity Created</td>
+  </tr>
+  <tr ng-repeat="company in data | orderBy:predicate:reverse">
+    <td> {{ company.Company }} </td>
+    <td> {{ company.EmployeeCount }} </td>
+    <td> {{ company.Product }} </td>
+    <td> {{ company.Scored }} </td>
+    <td> {{ company.OpportunityCreated }} </td>
+  </tr>
+</table>
