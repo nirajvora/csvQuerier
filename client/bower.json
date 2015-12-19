@@ -18,7 +18,9 @@
   "dependencies": {
     "angular": "~1.4.8",
     "d3": "~3.5.11",
-    "angular-route": "~1.4.8"
+    "angular-route": "~1.4.8",
+    "rickshaw": "~1.5.1",
+    "angular-rickshaw": "~0.10.0"
   },
   "resolutions": {
     "angular": "~1.4.8"
