@@ -1,4 +1,4 @@
-var app = angular.module('app', [ 'ngRoute' ]).config(function ( $routeProvider ) {
+var app = angular.module('app', [ 'ngRoute', 'angular-rickshaw' ]).config(function ( $routeProvider ) {
   $routeProvider.when('/', {
       templateUrl: 'templates/home.html',
       controller: 'PageController'
