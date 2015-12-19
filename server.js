@@ -65,7 +65,7 @@ app.get('/', function (req, res) {
 app.post('/query', function (req, res) {
 
   var product = (req.body.product === undefined || req.body.product === "") ? null : req.body.product.trim().toUpperCase();
-  var employeeSize = (req.body.employeeSize === undefined || req.body.product === "") ? null : req.body.employeeSize.replace(/ /g, '');
+  var employeeSize = (req.body.employeeSize === undefined || req.body.employeeSize === "") ? null : req.body.employeeSize.replace(/ /g, '');
   var score = (req.body.score === undefined || req.body.score === "") ? null : req.body.score.replace(/ /g, '');
 
   var esRange, scoreRange;
@@ -83,6 +83,7 @@ app.post('/query', function (req, res) {
     query += '.where("EmployeeCount").equals('+employeeSize+')'
   } else if(employeeSize !== null) {
     query += '.where("EmployeeCount").gt('+ (Number(employeeSize.slice(0,esRange)) - 1) + ').lt('+ (Number(employeeSize.slice(esRange + 1)) + 1) + ')';
+    console.log('here');
   }
 
   if(score !== null && scoreRange === -1) {

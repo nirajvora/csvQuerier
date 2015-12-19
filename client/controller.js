@@ -11,8 +11,22 @@ app.controller('PageController', [ '$scope', 'HTTPFactory', function ( $scope, H
 
   $scope.$on('data', function ( event, data ) {
     $scope.data = data;
+    chartData = [];
+
+    $scope.data.forEach(function(company, index) {
+      chartData.push({x: company.EmployeeCount, y: company.Scored})
+    });
+    console.log(chartData);
+
+  $scope.series = [{
+                        name: 'Series 2',
+                        data: chartData
+                    }];
+
+
   });
   $scope.data = [];
+  var chartData = [];
 
   $scope.predicate = 'Company';
   $scope.reverse = false;
@@ -25,16 +39,16 @@ app.controller('PageController', [ '$scope', 'HTTPFactory', function ( $scope, H
   //rickshaw settings
   $scope.options = { renderer: 'scatterplot'}
   $scope.series = [{
-                        name: 'Series 1',
-                        color: 'steelblue',
-                        data: [{x: 0, y: 23}, {x: 1, y: 15}, {x: 2, y: 79}, {x: 3, y: 31}, {x: 4, y: 60}]
-                    }, {
                         name: 'Series 2',
-                        color: 'lightblue',
-                        data: [{x: 0, y: 30}, {x: 1, y: 20}, {x: 2, y: 64}, {x: 3, y: 50}, {x: 4, y: 15}]
+                        data: chartData
                     }];
   $scope.features = {
-                    palette: 'colorwheel'
+                    yAxis: {
+                        tickFormat: 'formatKMBT'
+                    },
+                    xAxis: {
+                        tickFormate: 'numeric'
+                      }
                 };
 
 }]);
