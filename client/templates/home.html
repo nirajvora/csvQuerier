@@ -4,11 +4,11 @@
 
 <table style="width:100%">
   <tr>
-    <td ng-click="order(key)">Company</td>
-    <td ng-click="order('EmployeeCount')">Employee Count</td> 
-    <td ng-click="order('Product')">Product</td>
-    <td ng-click="order('Scored')">Score</td>
-    <td ng-click="order('OpportunityCreated')">Opportunity Created</td>
+    <td ng-click="order(key)"><b>Company</b></td>
+    <td ng-click="order('EmployeeCount')"><b>Employee Count</b></td>
+    <td ng-click="order('Product')"><b>Product</b></td>
+    <td ng-click="order('Scored')"><b>Score</b></td>
+    <td ng-click="order('OpportunityCreated')"><b>Opportunity Created</b></td>
   </tr>
   <tr ng-repeat="company in data | orderBy:predicate:reverse">
     <td> {{ company.Company }} </td>
